@@ -4,27 +4,30 @@ import {
   setNotification,
   removeNotification,
 } from "../reducers/notificationSlice";
+import anecdoteService from "../services/anecdotes";
 
 function AnecdoteForm() {
   const dispatch = useDispatch();
 
-  function handleSubmit(event) {
+  async function addAnecdote(event) {
     event.preventDefault();
 
     const content = event.target.anecdote.value;
-    dispatch(newAnecdote(content));
-    dispatch(setNotification(`You added '${content}'`));
+    event.target.anecdote.value = "";
+
+    const anecdote = await anecdoteService.create(content);
+
+    dispatch(newAnecdote(anecdote));
+    dispatch(setNotification(`You added '${anecdote.content}'`));
     setTimeout(() => {
       dispatch(removeNotification());
     }, 5000);
-
-    event.target.anecdote.value = "";
   }
 
   return (
     <>
       <h2>create new</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={addAnecdote}>
         <div>
           <input name="anecdote" />
         </div>
