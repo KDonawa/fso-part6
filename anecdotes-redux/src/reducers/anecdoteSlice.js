@@ -11,8 +11,8 @@ const anecdotesAtStart = [
 
 const getId = () => (100000 * Math.random()).toFixed(0);
 
-const initialState = anecdotesAtStart.map((anecdote) => {
-  return { content: anecdote, id: getId(), votes: 0 };
+const initialState = anecdotesAtStart.map((content) => {
+  return { content, id: getId(), votes: 0 };
 });
 
 const anecdoteSlice = createSlice({
