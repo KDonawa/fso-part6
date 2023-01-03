@@ -32,8 +32,13 @@
     },
     {
       "content": "Test",
-      "votes": 0,
-      "id": "23444"
+      "votes": 6,
+      "id": "12363"
+    },
+    {
+      "id": "30140",
+      "content": "Test 2",
+      "votes": 0
     }
   ]
 }
